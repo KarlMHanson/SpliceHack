@@ -216,30 +216,30 @@ const struct Role roles[NUM_ROLES+1] = {
         {"Fugitive", 0,  0} },
         "Ilmater", "Grumbar", "_Tymora",	/* Faerunian */
         "Con", "Castle Waterdeep Dungeon", "the Warden's Level",
-        PM_CONVICT, 
-        NON_PM, 
+        PM_CONVICT,
+        NON_PM,
         NON_PM,
         PM_SEWER_RAT,
-        PM_ROBERT_THE_LIFER, 
-        PM_INMATE, 
+        PM_ROBERT_THE_LIFER,
+        PM_INMATE,
         PM_WARDEN_ARIANNA,
-        PM_GIANT_BEETLE, 
-        PM_SOLDIER_ANT, 
-        S_RODENT, 
+        PM_GIANT_BEETLE,
+        PM_SOLDIER_ANT,
+        S_RODENT,
         S_SPIDER,
         ART_IRON_BALL_OF_LIBERATION,
         MH_HUMAN | MH_DWARF | MH_GNOME | MH_MERFOLK | MH_ORC | MH_GHOUL | MH_WERE
-            | MH_VAMPIRE | MH_CHANGELING,  
-        ROLE_MALE | ROLE_FEMALE | ROLE_NEUTER | ROLE_CHAOTIC,
+            | MH_VAMPIRE | MH_CHANGELING,
+        ROLE_MALE | ROLE_FEMALE | ROLE_NEUTER | ROLE_NEUTRAL | ROLE_CHAOTIC,
         /* Str Int Wis Dex Con Cha */
         {  10,  7,  7,  7, 13,  6 },
         {  20, 20, 10, 20, 20, 10 },
         /* Init   Lower  Higher */
         {  8, 0,  0, 8,  0, 0 },	/* Hit points */
         {  1, 0,  0, 1,  0, 1 },10,	/* Energy */
-        -10, 5, 0, 2, 10, 
-        A_INT, 
-        SPE_TELEPORT_AWAY,   
+        -10, 5, 0, 2, 10,
+        A_INT,
+        SPE_TELEPORT_AWAY,
         -4 },
     { { "Dancer", 0, 0 },
       { { "Student", 0 },
@@ -355,7 +355,7 @@ const struct Role roles[NUM_ROLES+1] = {
       S_YETI,
       ART_STAFF_OF_AESCULAPIUS,
       MH_HUMAN | MH_MERFOLK | MH_GNOME | MH_ANGEL | MH_GHOUL | MH_WERE | MH_ELF | MH_CHANGELING,
-      ROLE_MALE | ROLE_FEMALE | ROLE_NEUTER | ROLE_NEUTRAL,
+      ROLE_MALE | ROLE_FEMALE | ROLE_NEUTER | ROLE_LAWFUL | ROLE_NEUTRAL,
       /* Str Int Wis Dex Con Cha */
       { 7, 7, 13, 7, 11, 16 },
       { 15, 20, 20, 15, 25, 5 },
@@ -570,7 +570,7 @@ const struct Role roles[NUM_ROLES+1] = {
       ART_MASTER_KEY_OF_THIEVERY,
       MH_HUMAN | MH_MERFOLK | MH_DEMON | MH_GHOUL | MH_ORC | MH_WERE | MH_GNOME | MH_ELF
         | MH_VAMPIRE | MH_CHANGELING,
-      ROLE_MALE | ROLE_FEMALE | ROLE_NEUTER | ROLE_CHAOTIC,
+      ROLE_MALE | ROLE_FEMALE | ROLE_NEUTER | ROLE_NEUTRAL | ROLE_CHAOTIC,
       /* Str Int Wis Dex Con Cha */
       { 7, 7, 7, 10, 7, 6 },
       { 20, 10, 10, 30, 20, 10 },
@@ -628,7 +628,7 @@ const struct Role roles[NUM_ROLES+1] = {
       ART_LONGBOW_OF_DIANA,
       MH_HUMAN | MH_MERFOLK | MH_ELF | MH_GNOME | MH_ORC | MH_ANGEL |
           MH_DEMON | MH_GHOUL | MH_WERE | MH_DWARF | MH_CHANGELING,
-      ROLE_MALE | ROLE_FEMALE | ROLE_NEUTER | ROLE_NEUTRAL | ROLE_CHAOTIC,
+      ROLE_MALE | ROLE_FEMALE | ROLE_NEUTER | ROLE_LAWFUL | ROLE_NEUTRAL | ROLE_CHAOTIC,
       /* Str Int Wis Dex Con Cha */
       { 13, 13, 13, 9, 13, 7 },
       { 30, 10, 10, 20, 20, 10 },
@@ -801,7 +801,7 @@ const struct Role roles[NUM_ROLES+1] = {
       ART_EYE_OF_THE_AETHIOPICA,
       MH_HUMAN | MH_ELF | MH_MERFOLK | MH_GNOME | MH_ORC | MH_DEMON | MH_ANGEL |
           MH_GHOUL | MH_WERE | MH_DWARF | MH_VAMPIRE | MH_CHANGELING,
-      ROLE_MALE | ROLE_FEMALE | ROLE_NEUTER | ROLE_NEUTRAL | ROLE_CHAOTIC,
+      ROLE_MALE | ROLE_FEMALE | ROLE_NEUTER | ROLE_LAWFUL | ROLE_NEUTRAL | ROLE_CHAOTIC,
       /* Str Int Wis Dex Con Cha */
       { 7, 10, 7, 7, 7, 7 },
       { 10, 30, 10, 20, 20, 10 },
@@ -879,7 +879,7 @@ const struct Race races[] = {
         NON_PM,
         PM_CHANGELING_MUMMY,
         NON_PM,
-        MH_CHANGELING | ROLE_MALE | ROLE_FEMALE | ROLE_NEUTER | ROLE_LAWFUL,
+        MH_CHANGELING | ROLE_MALE | ROLE_FEMALE | ROLE_NEUTER | ROLE_NEUTRAL | ROLE_LAWFUL,
         MH_CHANGELING,
         MH_CHANGELING,
         MH_ELF | MH_ORC,
@@ -901,7 +901,7 @@ const struct Race races[] = {
         NON_PM,
         PM_ELF_MUMMY,
         PM_ELF_ZOMBIE,
-        MH_ELF | ROLE_MALE | ROLE_FEMALE | ROLE_NEUTER | ROLE_CHAOTIC,
+        MH_ELF | ROLE_MALE | ROLE_FEMALE | ROLE_NEUTER | ROLE_NEUTRAL | ROLE_CHAOTIC,
         MH_ELF,
         MH_ELF,
         MH_ORC,
@@ -991,7 +991,7 @@ const struct Race races[] = {
         NON_PM,
         PM_DWARF_MUMMY,
         PM_DWARF_ZOMBIE,
-        MH_DWARF | ROLE_MALE | ROLE_FEMALE | ROLE_NEUTER | ROLE_LAWFUL,
+        MH_DWARF | ROLE_MALE | ROLE_FEMALE | ROLE_NEUTER | ROLE_LAWFUL | ROLE_NEUTRAL,
         MH_DWARF,
         MH_DWARF | MH_GNOME,
         MH_ORC | MH_GIANT,
@@ -1013,7 +1013,7 @@ const struct Race races[] = {
         NON_PM,
         PM_GNOME_MUMMY,
         PM_GNOME_ZOMBIE,
-        MH_GNOME | ROLE_MALE | ROLE_FEMALE | ROLE_NEUTER | ROLE_NEUTRAL,
+        MH_GNOME | ROLE_MALE | ROLE_FEMALE | ROLE_NEUTER | ROLE_LAWFUL | ROLE_NEUTRAL,
         MH_GNOME,
         MH_DWARF | MH_GNOME,
         MH_HUMAN | MH_GIANT,
@@ -1092,21 +1092,21 @@ const struct Race races[] = {
         { 2, 0, 0, 2, 1, 0 }, /* Hit points */
         { 1, 0, 2, 0, 2, 0 }  /* Energy */
     },
-    {	
-        "vampire", 
-        "vampiric", 
-        "vampirehood", 
+    {
+        "vampire",
+        "vampiric",
+        "vampirehood",
         "Vam",
         {0, 0, 0},
-        PM_VAMPIRE, 
-        NON_PM, 
+        PM_VAMPIRE,
         NON_PM,
-        PM_HUMAN_MUMMY, 
+        NON_PM,
+        PM_HUMAN_MUMMY,
         PM_HUMAN_ZOMBIE,
-        MH_VAMPIRE | ROLE_MALE | ROLE_FEMALE | ROLE_NEUTER 
-            | ROLE_CHAOTIC,
-        MH_VAMPIRE, 
-        0, 
+        MH_VAMPIRE | ROLE_MALE | ROLE_FEMALE | ROLE_NEUTER
+            | ROLE_NEUTRAL | ROLE_CHAOTIC,
+        MH_VAMPIRE,
+        0,
         MH_ELF | MH_GNOME | MH_DWARF | MH_ORC,
         /*    Str     Int Wis Dex Con Cha */
         {      4,      0,  0,  4,  3,  4 },
