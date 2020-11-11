@@ -1386,7 +1386,7 @@ boolean atme;
 }
 
 static int
-expltyp(spell) 
+expltyp(spell)
 int spell;
 {
     switch(spell) {
@@ -1936,7 +1936,7 @@ int spell;
     if (uarms)
         splcaster += g.urole.spelshld;
 
-    if (uarmh && is_metallic(uarmh) && uarmh->otyp != HELM_OF_BRILLIANCE)
+    if (uarmh && is_metallic(uarmh) && uarmh->otyp != HELM_OF_BRILLIANCE && uarmh->otyp != HALO)
         splcaster += uarmhbon;
     if (uarmg && is_metallic(uarmg))
         splcaster += uarmgbon;
