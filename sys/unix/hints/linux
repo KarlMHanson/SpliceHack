@@ -16,7 +16,7 @@ PREFIX=$(wildcard ~)/spl/install
 HACKDIR=$(PREFIX)/games/lib/$(GAME)dir
 SHELLDIR = $(PREFIX)/games
 INSTDIR=$(HACKDIR)
-VARDIR = $(HACKDIR)
+VARDIR = $(HACKDIR)/var
 
 
 
