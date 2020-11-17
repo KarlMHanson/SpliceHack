@@ -75,7 +75,7 @@ pfx_##a,
 
     NHOPTB(acoustics, 0, opt_out, set_in_game, On, Yes, No, No, NoAlias,
                &flags.acoustics)
-    NHOPTC(align, 8, opt_in, set_gameview, No, Yes, No, No, NoAlias,
+    NHOPTC(align, 8, opt_in, set_gameview, No, Yes, Yes, No, NoAlias,
                "your starting alignment (lawful, neutral, or chaotic)")
     NHOPTC(align_message, 20, opt_in, set_gameview, Yes, Yes, No, Yes, NoAlias,
                "message window alignment")
@@ -193,7 +193,7 @@ pfx_##a,
                 "the name of a fruit you enjoy eating")
     NHOPTB(fullscreen, 0, opt_in, set_in_config, Off, Yes, No, No, NoAlias,
                 &iflags.wc2_fullscreen)
-    NHOPTC(gender, 8, opt_in, set_gameview, No, Yes, No, No, NoAlias,
+    NHOPTC(gender, 8, opt_in, set_gameview, No, Yes, Yes, No, NoAlias,
                 "your starting gender (male, female, or nonbinary)")
     NHOPTB(goldX, 0, opt_in, set_in_game, Off, Yes, No, No, NoAlias,
                 &flags.goldX)
@@ -333,7 +333,7 @@ pfx_##a,
                 "use the number pad for movement")
     NHOPTC(objects, MAXOCLASSES, opt_in, set_in_config, No, Yes, No, No, NoAlias,
                 "the symbols to use for objects")
-    NHOPTC(orientation, 8, opt_in, set_gameview, No, Yes, No, No, NoAlias,
+    NHOPTC(orientation, 8, opt_in, set_gameview, No, Yes, Yes, No, NoAlias,
                 "your sexual orientation, or the gender you are attracted to.")
     NHOPTC(packorder, MAXOCLASSES, opt_in, set_in_game, No, Yes, No, No, NoAlias,
                 "the inventory order of the items in your pack")
@@ -358,7 +358,7 @@ pfx_##a,
                 "maximum burden picked up before prompt")
     NHOPTB(pickup_thrown, 0, opt_out, set_in_game, On, Yes, No, No, NoAlias,
                 &flags.pickup_thrown)
-    NHOPTC(pickup_types, MAXOCLASSES, opt_in, set_in_game, No, Yes, No, Yes, NoAlias, 
+    NHOPTC(pickup_types, MAXOCLASSES, opt_in, set_in_game, No, Yes, No, Yes, NoAlias,
                 "types of objects to pick up automatically")
     NHOPTC(pile_limit, 24, opt_in, set_in_game, Yes, Yes, No, No, NoAlias,
                 "threshold for \"there are many objects here\"")
@@ -374,7 +374,7 @@ pfx_##a,
                 &flags.pushweapon)
     NHOPTB(quick_farsight, 0, opt_in, set_in_game, Off, Yes, No, No, NoAlias,
                 &flags.quick_farsight)
-    NHOPTC(race, PL_CSIZ, opt_in, set_gameview, No, Yes, No, No, NoAlias,
+    NHOPTC(race, PL_CSIZ, opt_in, set_gameview, No, Yes, Yes, No, NoAlias,
                 "your starting race (e.g., Human, Elf)")
     NHOPTC(ratname, PL_PSIZ, opt_in, set_gameview, No, Yes, No, No, NoAlias,
                 "the name of your (first) rat (e.g., dragonname:Squeak)")
@@ -389,7 +389,7 @@ pfx_##a,
                 &flags.rest_on_space)
     NHOPTC(roguesymset, 70, opt_in, set_in_game, No, Yes, No, Yes, NoAlias,
                 "load a set of rogue display symbols from the symbols file")
-    NHOPTC(role, PL_CSIZ, opt_in, set_gameview, No, Yes, No, No, "character",
+    NHOPTC(role, PL_CSIZ, opt_in, set_gameview, No, Yes, Yes, No, "character",
                 "your starting role (e.g., Barbarian, Valkyrie)")
     NHOPTC(runmode, sizeof "teleport", opt_in, set_in_game, Yes, Yes, No, Yes,
                 NoAlias, "display frequency when `running' or `travelling'")
@@ -413,10 +413,10 @@ pfx_##a,
                 &flags.showrace)
 #ifdef SCORE_ON_BOTL
     NHOPTB(showscore, 0, opt_in, set_in_game, Off, Yes, No, No, NoAlias,
-                &flags.showscore) 
+                &flags.showscore)
 #else
     NHOPTB(showscore, 0, opt_in, set_in_config, Off, Yes, No, No, NoAlias,
-                (boolean *) 0) 
+                (boolean *) 0)
 #endif
     NHOPTB(silent, 0, opt_out, set_in_game, On, Yes, No, No, NoAlias,
                 &flags.silent)
@@ -434,7 +434,7 @@ pfx_##a,
                 &flags.standout)
     NHOPTB(status_updates, 0, opt_out, set_in_config, On, Yes, No, No, NoAlias,
                 &iflags.status_updates)
-#ifdef STATUS_HILITES 
+#ifdef STATUS_HILITES
     NHOPTC(statushilites, 20, opt_in, set_in_game, Yes, Yes, Yes, No, NoAlias,
                 "0=no status highlighting, N=show highlights for N turns")
 #else
@@ -578,4 +578,3 @@ pfx_##a,
 #endif /* NHOPT_PROTO || NHOPT_ENUM || NHOPT_PARSE */
 
 /* end of optlist */
-
