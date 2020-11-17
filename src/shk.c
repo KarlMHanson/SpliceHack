@@ -1514,7 +1514,7 @@ dopay()
             You("do not owe %s anything.", shkname(shkp));
             if (!umoney)
                 pline(no_money, stashed_gold ? " seem to" : "");
-            shk_other_services();
+            //shk_other_services();
         } else if (ltmp) {
             pline("%s is after blood, not gold!", shkname(shkp));
             if (umoney < ltmp / 2L || (umoney < ltmp && stashed_gold)) {
@@ -1752,13 +1752,13 @@ shk_other_services()
 	if (ESHK(shkp)->services & (SHK_ID_BASIC|SHK_ID_PREMIUM))
 	     add_menu(tmpwin, NO_GLYPH, &any , 'i', 0, ATR_NONE,
 	         "Identify", MENU_ITEMFLAGS_NONE);
-  
+
   	/* All shops can uncurse */
 	any.a_int = 2;
 	if (ESHK(shkp)->services & (SHK_UNCURSE))
 	     add_menu(tmpwin, NO_GLYPH, &any , 'u', 0, ATR_NONE,
 	         "Uncurse", MENU_ITEMFLAGS_NONE);
-  
+
   	/* Weapon appraisals.  Weapon & general stores can do this. */
 	if ((ESHK(shkp)->services & (SHK_UNCURSE)) &&
 			(shk_class_match(WEAPON_CLASS, shkp))) {
@@ -1766,7 +1766,7 @@ shk_other_services()
 		add_menu(tmpwin, NO_GLYPH, &any , 'a', 0, ATR_NONE,
 				"Appraise", MENU_ITEMFLAGS_NONE);
 	}
-  
+
   	/* Weapon-works!  Only a weapon store. */
 	if ((ESHK(shkp)->services & (SHK_SPECIAL_A|SHK_SPECIAL_B|SHK_SPECIAL_C))
 			&& (shk_class_match(WEAPON_CLASS, shkp) == SHK_MATCH)) {
@@ -1778,7 +1778,7 @@ shk_other_services()
 			add_menu(tmpwin, NO_GLYPH, &any , 'p', 0, ATR_NONE,
 				"Poison", MENU_ITEMFLAGS_NONE);
 	}
-  
+
   	/* Armor-works */
 	if ((ESHK(shkp)->services & (SHK_SPECIAL_A|SHK_SPECIAL_B))
 			 && (shk_class_match(ARMOR_CLASS, shkp) == SHK_MATCH)) {
@@ -1786,7 +1786,7 @@ shk_other_services()
 		add_menu(tmpwin, NO_GLYPH, &any , 'r', 0, ATR_NONE,
 				"Armor-works", MENU_ITEMFLAGS_NONE);
 	}
-  
+
   	/* Charging: / ( = */
 	if ((ESHK(shkp)->services & (SHK_SPECIAL_A|SHK_SPECIAL_B)) &&
 			((shk_class_match(WAND_CLASS, shkp) == SHK_MATCH) ||
@@ -3673,7 +3673,7 @@ shk_identify(slang, shkp)
 	}
 
 	/* Compute the charge */
-	
+
 	if (ripoff)
 	{
 		if (no_cheat) {
@@ -3684,45 +3684,45 @@ shk_identify(slang, shkp)
 		pline("%s chuckles greedily...", mon_nam(shkp));
 		mult = 1;
 
-	/* basic */        
+	/* basic */
 	} else if (ident_type=='b') mult = 1;
 	/* premier */
 	else mult = 2;
-	
-	switch (obj->oclass) {        
+
+	switch (obj->oclass) {
 		case AMULET_CLASS:      charge = 375 * mult;
 					break;
 		case WEAPON_CLASS:      charge = 75 * mult;
 					break;
 		case ARMOR_CLASS:       charge = 100 * mult;
 					break;
-		case FOOD_CLASS:        charge = 25 * mult;   
+		case FOOD_CLASS:        charge = 25 * mult;
 					break;
-		case SCROLL_CLASS:      charge = 150 * mult;   
+		case SCROLL_CLASS:      charge = 150 * mult;
 					break;
-		case SPBOOK_CLASS:      charge = 250 * mult;   
+		case SPBOOK_CLASS:      charge = 250 * mult;
 					break;
-		case POTION_CLASS:      charge = 150 * mult;   
+		case POTION_CLASS:      charge = 150 * mult;
 					break;
-		case RING_CLASS:        charge = 300 * mult;   
+		case RING_CLASS:        charge = 300 * mult;
 					break;
-		case WAND_CLASS:        charge = 200 * mult;   
+		case WAND_CLASS:        charge = 200 * mult;
 					break;
-		case TOOL_CLASS:        charge = 50 * mult;   
+		case TOOL_CLASS:        charge = 50 * mult;
 					break;
 		case GEM_CLASS:         charge = 500 * mult;
 					break;
 		default:                charge = 75 * mult;
 					break;
 	}
-		
+
 	/* Artifacts cost more to deal with */
 	/* KMH -- Avoid floating-point */
 	if (obj->oartifact) charge = charge * 3 / 2;
-	
+
 	/* Smooth out the charge a bit (lower bound only) */
 	shk_smooth_charge(&charge, 25, 750);
-	
+
 	/* Go ahead? */
 	if (shk_offer_price(slang, charge, shkp) == FALSE) return;
 
@@ -3751,7 +3751,7 @@ shk_identify(slang, shkp)
 
 	if (ident_type == 'p') {
 		identify(obj);
-	} else { 
+	} else {
 		/* Basic */
 		makeknown(obj->otyp);
 		obj->dknown = 1;
@@ -3778,7 +3778,7 @@ shk_uncurse(slang, shkp)
 
 	/* Charge is same as cost */
 	charge = get_cost(obj, shop_keeper(/* roomno= */*u.ushops));
-		
+
 	/* Artifacts cost more to deal with */
 	/* KMH -- Avoid floating-point */
 	if (obj->oartifact) charge = charge * 3 / 2;
@@ -3881,7 +3881,7 @@ shk_appraisal(slang, shkp)
         /* Shkp's an idiot */
         verbalize("Sorry, %s, but I'm not certain.", slang);
 	} else {
-        verbalize("If someone were to swing this at you, they could deal roughly %d damage.", 
+        verbalize("If someone were to swing this at you, they could deal roughly %d damage.",
             dmgval(obj, &g.youmonst) + guesswork ? rnd(30) : 0);
     }
 }
@@ -3962,7 +3962,7 @@ struct monst *shkp;
 
 	case 1:
 	    verbalize("This'll leave your %s untouchable!", xname(obj));
-	    
+
 	    /* Costs more the more eroded it is (oeroded 0-3 * 2) */
 	    charge = 500 * (obj->oeroded + obj->oeroded2 + 1);
 	    if (obj->oeroded + obj->oeroded2 > 2)
@@ -4010,7 +4010,7 @@ struct monst *shkp;
 	    shk_smooth_charge(&charge, 50, NOBOUND);
 
 	    if (shk_offer_price(slang, charge, shkp) == FALSE) return;
-	    if (obj->spe+1 > 5) { 
+	    if (obj->spe+1 > 5) {
 		verbalize("I can't enchant this any higher!");
 		charge = 0;
 		break;
@@ -4095,7 +4095,7 @@ shk_armor_works(slang, shkp)
 		/* Artifacts cost more to deal with */
 		/* KMH -- Avoid floating-point */
 		if (obj->oartifact) charge = charge * 3 / 2;
-		
+
 		/* Smooth out the charge a bit */
 		shk_smooth_charge(&charge, 100, 1000);
 
@@ -4114,27 +4114,27 @@ shk_armor_works(slang, shkp)
 
 		case 2:
 		verbalize("Nobody will ever hit on you again.");
- 
+
 		/* Higher enchantment levels cost more. */
 		charge = (obj->spe+1) * (obj->spe+1) * 500;
-						
-		if (obj->spe < 0) charge = 100;                
+
+		if (obj->spe < 0) charge = 100;
 
 		/* Artifacts cost more to deal with */
 		if (obj->oartifact) charge *= 2;
-		
+
 		/* Smooth out the charge a bit */
 		shk_smooth_charge(&charge, 50, NOBOUND);
 
 		if (shk_offer_price(slang, charge, shkp) == FALSE) return;
-		if (obj->spe+1 > 3) { 
+		if (obj->spe+1 > 3) {
 			verbalize("I can't enchant this any higher!");
 			charge = 0;
 			break;
 			}
 		 /* Have some fun! */
 		if (Hallucination) Your("%s looks dented.", xname(obj));
-		
+
 		if (obj->otyp >= GRAY_DRAGON_SCALES &&
 					obj->otyp <= YELLOW_DRAGON_SCALES) {
 			/* dragon scales get turned into dragon scale mail */
@@ -4328,10 +4328,10 @@ shk_offer_price(slang, charge, shkp)
 
 	/* Player _wants_ to pay, but can he? */
 	/* WAC -- Check the credit:  but don't use check_credit
-	 * since we don't want to charge him for part of it if he can't pay for all 
-	 * of it 
+	 * since we don't want to charge him for part of it if he can't pay for all
+	 * of it
 	 */
-	if (charge > (money_cnt(g.invent) + credit)) {  
+	if (charge > (money_cnt(g.invent) + credit)) {
 		verbalize("Cash on the spot, %s, and you ain't got the dough!",
 			slang);
 		return(FALSE);
@@ -4381,7 +4381,7 @@ shk_smooth_charge(pcharge, lower, upper)
 	if (upper == NOBOUND) goto check_lower;
 
 	/* This should give us something like a charisma of 5 to 25. */
-	charisma = ABASE(A_CHA) + ABON(A_CHA) + ATEMP(A_CHA);        
+	charisma = ABASE(A_CHA) + ABON(A_CHA) + ATEMP(A_CHA);
 
 	/* Now: 0 to 10 = 0.  11 and up = 1 to whatever. */
 	if (charisma <= 10)
